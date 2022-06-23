@@ -1,0 +1,45 @@
+using Oscar
+using Combinatorics
+pm = Polymake
+
+include("src/inputData38.jl");
+include("src/fileHandling.jl")
+include("src/tscCoordRing.jl");
+include("src/matroidalSubd.jl");
+include("src/Bmaximal.jl");
+include("src/simplifyIdeal.jl");
+
+G3 = file2SetVectors("groupsFinal/G3.dat");
+
+hasUpperTriangularG3 = []
+doesntHaveUpperTriangularG3 = []
+
+R, x = makePolyRing(3,8, QQ)
+
+for w in G3[1:50]
+    subd = SubdivisionOfPoints(vDelta38[:,2:9], -w)
+    Ms = subdMatroidsNonLeaves(subd,3,8)
+    
+    optBs = optimalBasesForLimit(Ms)
+    Lim = limitTSC(Ms, QQ, first(optBs), R, x)
+    
+    Rt = base_ring(Lim)
+    xt = gens(base_ring(Lim))
+    gLim = minimal_generating_set(Lim)
+    
+    if systemHasUniUpperTriangle(gLim, Rt, xt)
+        push!(hasUpperTriangularG3, w)
+
+        open("G3Data/hasUpperTriangularG3.dat", "a") do io
+            write(io, vec2String(w), "\n")
+        end;
+
+        
+    else
+        push!(doesntHaveUpperTriangularG3, w)
+        open("G3Data/doesnthaveUpperTriangularG3.dat", "a") do io
+            write(io, vec2String(w), "\n")
+        end;
+    end
+    
+end

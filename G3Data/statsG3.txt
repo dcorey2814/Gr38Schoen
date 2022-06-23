@@ -1,0 +1,50 @@
+start ~23:40 stop 3:11
+9986 + 1100 = 11086
+
+ERROR: LoadError: InexactError: convert(Int64, 391005808/391005808)
+Stacktrace:
+  [1] convert(#unused#::Type{Int64}, r::Polymake.RationalAllocated)
+    @ Polymake ~/.julia/packages/Polymake/OsXom/src/convert.jl:58
+  [2] setindex!
+    @ ./array.jl:903 [inlined]
+  [3] copyto_unaliased!(deststyle::IndexLinear, dest::Vector{Int64}, srcstyle::IndexCartesian, src::Polymake.VectorAllocated{Polymake.Rational})
+    @ Base ./abstractarray.jl:1024
+  [4] copyto!(dest::Vector{Int64}, src::Polymake.VectorAllocated{Polymake.Rational})
+    @ Base ./abstractarray.jl:998
+  [5] copyto_axcheck!
+    @ ./abstractarray.jl:1104 [inlined]
+  [6] Vector{Int64}(x::Polymake.VectorAllocated{Polymake.Rational})
+    @ Base ./array.jl:563
+  [7] #25
+    @ ~/.julia/packages/Polymake/OsXom/src/convert.jl:184 [inlined]
+  [8] (::var"#25#26"{Int64, Int64})(r::Vector{Int64})
+    @ Main ./none:0
+  [9] iterate
+    @ ./generator.jl:47 [inlined]
+ [10] collect_to!(dest::Vector{Matroid}, itr::Base.Generator{SubObjectIterator{Vector{Int64}}, var"#25#26"{Int64, Int64}}, offs::Int64, st::Tuple{Base.OneTo{Int64}, Int64})
+    @ Base ./array.jl:782
+ [11] collect_to_with_first!
+    @ ./array.jl:760 [inlined]
+ [12] collect(itr::Base.Generator{SubObjectIterator{Vector{Int64}}, var"#25#26"{Int64, Int64}})
+    @ Base ./array.jl:734
+ [13] subd2Matroids
+    @ ~/gitRepos/grassmannian38/src/matroidalSubd.jl:11 [inlined]
+ [14] subdMatroidsNonLeaves(subd::SubdivisionOfPoints{fmpq}, d::Int64, n::Int64)
+    @ Main ~/gitRepos/grassmannian38/src/matroidalSubd.jl:40
+ [15] top-level scope
+    @ ~/gitRepos/grassmannian38/G3Data/G3HasUpperTriangular.jl:34
+in expression starting at /home/daniel/gitRepos/grassmannian38/G3Data/G3HasUpperTriangular.jl:32
+
+
+start ~3:21 stop 7:53
+
+total time: 3.5 + 4.5 = 8
+
+start 9:41 stop 10:11
+start 10:37 stop 10:43
+
+G5 UT
+start ~18:54 stop 23:42
+
+G3 Dim 
+start ~1:05 stop 9:58
