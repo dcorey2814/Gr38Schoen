@@ -130,7 +130,7 @@ end
 
 function localizeLimitRing(Ms, F, B, R, x)
     sTotal = localizingSemiGroup(Ms, F, B, R, x)
-    return Localization(sTotal)    
+    return Localization(sTotal)[1]
 end
 
 function coefficientPoly(v, f, R)
