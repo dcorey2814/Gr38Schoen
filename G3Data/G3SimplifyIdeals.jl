@@ -42,7 +42,7 @@ for w in doesntHaveUpperTriangularG3
     
     
     Sinv = localizingSemiGroup(Ms, QQ, first(optBs), R, x)
-    SR = Localization(Sinv)
+    SR = Localization(Sinv)[1]
     
     if canReduceIdeal(gLim, R, x, Sinv, SR)
         push!(canFullySimplifyG3, w)
