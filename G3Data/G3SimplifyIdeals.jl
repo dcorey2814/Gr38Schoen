@@ -13,7 +13,7 @@ include(joinpath(currentDir, "src/simplifyIdeal.jl"));
 G3Path = joinpath(currentDir,"groupsFinal/G3.dat")
 G3 = file2SetVectors(G3Path);
 
-doesntHaveUpperTriangularG3 = file2SetVectors(joinpath(currentDir, "G3Data/doesnthaveUpperTriangularG3.dat"));
+doesntHaveUpperTriangularG3 = file2SetVectors(joinpath(currentDir, "G3Data/doesnthaveUpperTriangularG3-precomputed.dat"));
 
 canFullySimplifyG3 = []
 cannotFullySimplifyG3 = []

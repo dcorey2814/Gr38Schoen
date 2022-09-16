@@ -227,6 +227,9 @@ io2 = open(cannotFile, "w")
 close(io1)
 close(io2)
 
+doesntHaveUpperTriangularG5 = file2SetVectors(joinpath(currentDir, "G5Data/doesnthaveUpperTriangularG5-precomputed.dat"));
+
+
 
 for w in doesntHaveUpperTriangularG5
     subd = SubdivisionOfPoints(vDelta38[:,2:9], -w)
@@ -244,7 +247,7 @@ for w in doesntHaveUpperTriangularG5
     gLim = minimal_generating_set(Lim)
     
     Sinv = localizingSemiGroup(MsBody, QQ, first(optB), R, x)
-    SR = Localization(Sinv)
+    SR = Localization(Sinv)[1]
     
     if canReduceIdeal(gLim, R, x, Sinv, SR)
         push!(canFullySimplifyG5, w)
