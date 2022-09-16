@@ -18,7 +18,7 @@ Each of these permutation in $S_{56}$ is recorded in the standard ``one-line'' n
 ```ConesDrOfGr.data``` is a text file recording the maximal cones of $\operatorname{TGr}_{0}(3,8)$ with its secondary fan structure. Each line represents a cone as a space separated list of symbols ```r#s```. Here, ```r``` represents a row of ```GrRays.data```, and ```s``` a row of ```group38```. Thus, the symbol ```r#s``` mean ``the r-th ray whose coordinates are permuted by the s-th permutation in ```group38```.'' 
 
 ## The seconday fan structure $\operatorname{TGr}_{0}(3,8)$: The intermediate cones
-
+See the notebook ```generateAllCones.ipynb``` for instructions on how to generate the remaining cones. The data most relevant for the verifications in Section 6 are the files ```codim_0.dat```, ```codim_1.dat```, ```codim_2.dat```, ```codim_3.dat```, ```codim_4.dat```, ```codim_5.dat```, ```codim_6.dat```, ```codim_7.dat``` in the directory ```allRepsByCodim```. The file ```codim_{j}.dat``` contains the data of the codimension ```j``` cones up to $S_8$--symmetry (replace ```{j}``` with 0 thru 7). Each line of ```codim_{j}.dat``` records a cone as a vector in its relative interior. 
 
 ## Verifying propositions in Section 6
 
