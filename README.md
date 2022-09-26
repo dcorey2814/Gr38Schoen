@@ -20,6 +20,9 @@ Each of these permutation in $S_{56}$ is recorded in the standard ``one-line'' n
 ## The seconday fan structure $\operatorname{TGr}_{0}(3,8)$: The intermediate cones
 See the notebook ```generateAllCones.ipynb``` for instructions on how to generate the remaining cones. The data most relevant for the verifications in Section 6 are the files ```codim_0.dat```, ```codim_1.dat```, ```codim_2.dat```, ```codim_3.dat```, ```codim_4.dat```, ```codim_5.dat```, ```codim_6.dat```, ```codim_7.dat``` in the directory ```allRepsByCodim```. The file ```codim_{j}.dat``` contains the data of the codimension ```j``` cones up to $S_8$--symmetry (replace ```{j}``` with 0 thru 7). Each line of ```codim_{j}.dat``` records a cone as a vector in its relative interior. 
 
+## The (3,8)-matroids
+Verifications necessary for Proposition 4.3 are contained in the notebook ```Matroids_3_8.ipynb```. 
+
 ## Verifying propositions in Section 6
 
 The cones in ```codim_0.dat```, ..., ```codim_7.dat``` are reorganized into 6 groups ```G1.dat```, ..., ```G6.dat```  in the directory ```groupsFinal```; these groups are defined in Section 6 of the paper. The notebook ```G1.ipynb``` verifies that each representative ```w``` in ```G1.dat```  really does belong to the group ```G1```. The notebooks ```G2.ipynb```, ```G3.ipynb```, ```G4.ipynb```, ```G5.ipynb```, ```G6.ipynb``` contain the code used in the proof of Propositions 6.7, 6.13, 6.14, 6.16, and 6.19, respectively. These rely on the functions in the files contained in the ```src``` directory. The documentation for these functions is in the notebook ```functionDocumentation.ipynb```. Instructions on full verifications and examples are also provided in these notebooks. 
