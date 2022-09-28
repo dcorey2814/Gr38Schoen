@@ -1,5 +1,5 @@
 # Gr38Schoen
-Code used in the paper <a href="https://arxiv.org/abs/2206.14993"> The Grassmannian of 3-planes in C^8</a> is sch\"on by Daniel Corey and Dante Luber. This code works with OSCAR version 0.10.1. Note: it may be essential to use this version of OSCAR.  
+Code used in the paper <a href="https://arxiv.org/abs/2206.14993"> The Grassmannian of 3-planes in C^8</a> is sch&#246;on by Daniel Corey and Dante Luber. This code works with OSCAR version 0.10.1. Note: it may be essential to use this version of OSCAR.  
 
 **Convention** $TGr_{0}(3,8)$ is the support of a fan in $\wedge^{3}\mathbb{R}^{8} \cong \mathbb{R}^{\binom{[8]}{3}}$. We order the coordinates of $\mathbb{R}^{\binom{[8]}{3}} \cong \mathbb{R}$ lexicographically.  In the paper, we use the MIN convention, however, the data of $TGr_{0}(3,8)$ is given to us with respect to the MAX convention. Thus, when forming the associated subdivision of $\Delta(3,8)$, one must *negate* the vector. 
 
