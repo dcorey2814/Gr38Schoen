@@ -13,7 +13,7 @@ $\sigma \cdot (i,j,k ) = (\sigma(i),\sigma(j),\sigma(k))$
 
 Each of these permutation in $S_{56}$ is recorded in the standard ``one-line'' notation of a permutation, i.e., $\sigma = (\sigma(1), \sigma(2), \ldots, \sigma(56))$.
 
-```GrRays.data``` is a polymake data file containing a ```Matrix<Rational,NonSymmetric>``` recording the rays of $TGr_{0}(3,8)$. Each row of this matrix is a ray of $TGr_{0}(3,8)$ with its *Gr\"obner* fan structure; only the first 12 are needed for the secondary fan structure. 
+```GrRays.data``` is a polymake data file containing a ```Matrix<Rational,NonSymmetric>``` recording the rays of $TGr_{0}(3,8)$. Each row of this matrix is a ray of $TGr_{0}(3,8)$ with its *Gr&#246;bner* fan structure; only the first 12 are needed for the secondary fan structure. 
 
 ```ConesDrOfGr.data``` is a text file recording the maximal cones of $\operatorname{TGr}_{0}(3,8)$ with its secondary fan structure. Each line represents a cone as a space separated list of symbols ```r#s```. Here, ```r``` represents a row of ```GrRays.data```, and ```s``` a row of ```group38```. Thus, the symbol ```r#s``` mean ``the r-th ray whose coordinates are permuted by the s-th permutation in ```group38```.'' 
 
