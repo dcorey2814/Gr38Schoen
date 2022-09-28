@@ -279,9 +279,9 @@ end
 
 
 #codim_1 = distinctOrbits(S8,collect(keys(codim1Raw)))
-#listVectors2File(codim_1, "codim_1-V2.dat")
+#listVectors2File(codim_1, "codim_1.dat")
 
-codim_1 = file2SetVectors("codim_1-V2.dat")
+codim_1 = file2SetVectors("codim_1.dat")
 interior2Rayscodim1 = Dict{Vector{Int64}, Matrix{Int64}}([v=>codim1Raw[v] for v in codim_1 ])
 
 print("1\n")
