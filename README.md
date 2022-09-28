@@ -25,7 +25,8 @@ Verifications necessary for Proposition 4.3 are contained in the notebook ```Mat
 
 ## Verifying propositions in Section 6
 
-The cones in ```codim_0.dat```, ..., ```codim_7.dat``` are reorganized into 6 groups ```G1.dat```, ..., ```G6.dat```  in the directory ```groupsFinal```; these groups are defined in Section 6 of the paper. The notebook ```G1.ipynb``` verifies that each representative ```w``` in ```G1.dat```  really does belong to the group ```G1```. The notebooks ```G2.ipynb```, ```G3.ipynb```, ```G4.ipynb```, ```G5.ipynb```, ```G6.ipynb``` contain the code used in the proof of Propositions 6.7, 6.13, 6.14, 6.16, and 6.19, respectively. These rely on the functions in the files contained in the ```src``` directory. The documentation for these functions is in the notebook ```functionDocumentation.ipynb```. Instructions on full verifications and examples are also provided in these notebooks. 
+ 
+The cones in ```codim_0.dat```, ..., ```codim_7.dat``` are reorganized into 6 groups ```G1.dat```, ..., ```G6.dat```  in the directory ```groupsFinal```; these groups are defined in Section 6 of the paper. These reorganization is done in the notebook ```annotated_grand_scheme.ipynb```.  The notebook ```G1.ipynb``` verifies that each representative ```w``` in ```G1.dat```  really does belong to the group ```G1```. The notebooks ```G2.ipynb```, ```G3.ipynb```, ```G4.ipynb```, ```G5.ipynb```, ```G6.ipynb``` contain the code used in the proof of Propositions 6.7, 6.13, 6.14, 6.16, and 6.19, respectively. These rely on the functions in the files contained in the ```src``` directory. The documentation for these functions is in the notebook ```functionDocumentation.ipynb```. Instructions on full verifications and examples are also provided in these notebooks. 
 
 
 
