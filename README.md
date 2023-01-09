@@ -10,7 +10,13 @@ julia> Pkg.instantiate()
 
 ## The seconday fan structure $\operatorname{TGr}_{0}(3,8)$: Raw data
 
-The data of $TGr_{0}(3,8)$ was shared with us by Benjamin Schr&#246;ter, which was computed in the paper <a href="https://arxiv.org/abs/2003.13752"> Parallel Computation of tropical varieties, their positive part, and tropical Grassmannians</a> by Dominik Bendle, Janko Boehm, Yue Ren, and Benjamin Schr&#246;ter. Their data is recorded on <a href="https://www.mathematik.uni-kl.de/~boehm/singulargpispace/tropical/TGR38.htm"> this webpage</a>. This is in the files ```group38```, ```GrRays.data```, and ```ConesDrOfGr.data```. 
+The data of $TGr_{0}(3,8)$ was shared with us by Benjamin Schr&#246;ter, which was computed in the paper *Parallel Computation of tropical varieties, their positive part, and tropical Grassmannians* <a href="https://arxiv.org/abs/2003.13752"> arXiv:2003.13752</a> by Dominik Bendle, Janko Boehm, Yue Ren, and Benjamin Schr&#246;ter. Their data is recorded at the following webpage.
+
+https://www.mathematik.uni-kl.de/~boehm/singulargpispace/tropical/TGR38.htm
+
+
+This is in the files ```group38```, ```GrRays.data```, and ```ConesDrOfGr.data```. 
+
 
 ```group38``` is a polymake data file containing an ```Array<Array<Int>>```. Denote by $S_{n}$ the symmetric group on $[n]$.  This file records the subgroup of $S_{56}$  isomorphic to  $S_8$ induced by the action of $S_8$ on $\binom{[8]}{3}$ given by
 
