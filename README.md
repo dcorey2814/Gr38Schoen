@@ -1,5 +1,5 @@
 # Gr38Schoen
-Code used in the paper <a href="https://arxiv.org/abs/2206.14993"> The Grassmannian of 3-planes in C^8</a> is sch&#246;n by Daniel Corey and Dante Luber. This code works with OSCAR version 0.10.1. Note: it may be essential to use this version of OSCAR. To ensure that you are using this version of Oscar, do the following. First, run ```julia --project=.``` in the terminal from the root of this project. Next, open ```julia``` and run the following:
+Code used in the paper <a href="https://arxiv.org/abs/2206.14993"> The Grassmannian of 3-planes in C^8 is sch&#246;n</a> by Daniel Corey and Dante Luber. This code works with OSCAR version 0.10.1. Note: it may be essential to use this version of OSCAR. To ensure that you are using this version of Oscar, do the following. First, run `julia --project=.` in the terminal from the root of this project. Next, open `julia` and run the following:
 
 ```
 julia> using Pkg
