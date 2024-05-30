@@ -1,7 +1,6 @@
 ##########################
 ##   matroidal data of subdivision   ##
 ##########################
-
 function plueckerList2Matroid(L, d, n)
     dn = collect(powerset([1:n;], d, d))
     return matroid_from_bases(dn[L], 1:n) 
@@ -11,16 +10,19 @@ function subd2Matroids(subd, d, n)
     return [plueckerList2Matroid(r, d, n) for r in maximal_cells(subd) ]     
 end
 
+function subdDualGraph(subd)
+    Gra = subd.pm_subdivision.POLYHEDRAL_COMPLEX.DUAL_GRAPH
+    E = pm.graph.edges(Gra)
+    E = [[a for a in Set(e)] for e in Array(E)]
+    E = pm.to_one_based_indexing(E)
+    return graph_from_edges(E)
+end
 
 function edgesDualGraph(subd)
-    Gra = subd.pm_subdivision.POLYHEDRAL_COMPLEX.DUAL_GRAPH
-    gdual = Graphs.Graph{Graphs.Undirected}(Gra.ADJACENCY)
-    edges = collect(Graphs.edges(gdual))
-    
+    dg = subdDualGraph(subd)
+    dg_edges = collect(edges(dg))
     maxCells = maximal_cells(subd)
-    
-    dualGraphEdgesAsVertices = [intersect(maxCells[Graphs.src(e)], maxCells[ Graphs.src(Graphs.reverse(e)) ] ) for e in edges]
-    
+    dualGraphEdgesAsVertices = [intersect(maxCells[src(e)], maxCells[dst(e)]) for e in dg_edges]
     return dualGraphEdgesAsVertices
 end
 
@@ -31,16 +33,11 @@ function subd2CodimLeq1Matroids(subd, d, n)
     return (maxMatroids, codim1Matroids) 
 end
 
-function subd2DualGraph(subd)
-    Gra = subd.pm_subdivision.POLYHEDRAL_COMPLEX.DUAL_GRAPH    
-    graphOscar = Graphs.Graph{Graphs.Undirected}(Gra.ADJACENCY)
-    return graphOscar
-end
-
 function subdMatroidsNonLeaves(subd, d, n)
     Mats = subd2Matroids(subd, d, n)
-    Gra = subd.pm_subdivision.POLYHEDRAL_COMPLEX.DUAL_GRAPH
-    graphOscar = Graphs.Graph{Graphs.Undirected}(Gra.ADJACENCY)
+    dg = subdDualGraph(subd)
+    Leaves = leavesGraph(dg)
+    notLeaves = [v for v in 1:n_vertices(dg) if !(v in Leaves)]
     notLeaves = [v for v in 1:Graphs.nv(graphOscar) if length(Graphs.all_neighbors(graphOscar, v)) > 1 ]
     return Mats[notLeaves]
 end
@@ -51,24 +48,22 @@ end
 
 function subdMatroidsLeaves(subd, d, n)
     Mats = subd2Matroids(subd, d, n)
-    Gra = subd.pm_subdivision.POLYHEDRAL_COMPLEX.DUAL_GRAPH
-    graphOscar = Graphs.Graph{Graphs.Undirected}(Gra.ADJACENCY)
-    Leaves = [v for v in 1:Graphs.nv(graphOscar) if length(Graphs.all_neighbors(graphOscar, v)) == 1 ]
+    dg = subdDualGraph(subd)
+    Leaves = leavesGraph(dg)
     return Mats[Leaves]
 end
 
-function leavesGraph(graphOscar)
-    return [v for v in 1:Graphs.nv(graphOscar) if length(Graphs.all_neighbors(graphOscar, v)) == 1 ]
+function leavesGraph(dg)
+    return [v for v in 1:n_vertices(dg) if length(all_neighbors(dg, v)) == 1 ]
 end
 
 function leafEdgesDualGraphAsCells(subd)
-    Gra = subd.pm_subdivision.POLYHEDRAL_COMPLEX.DUAL_GRAPH
-    graphOscar = Graphs.Graph{Graphs.Undirected}(Gra.ADJACENCY)
-    edges = collect(Graphs.edges(graphOscar))
-    lG = leavesGraph(graphOscar)
-    leafEdges = [e for e in edges if (Graphs.src(e) in lG || Graphs.src(Graphs.reverse(e)) in lG )]
+    dg = subdDualGraph(subd)
+    edges_dg = collect(edges(dg))
+    lG = leavesGraph(dg)
+    leafEdges = [e for e in edges if (src(e) in lG || dst(e) in lG )]
     maxCells = maximal_cells(subd)
-    dualGraphEdgesAsVertices = [intersect(maxCells[Graphs.src(e)], maxCells[ Graphs.src(Graphs.reverse(e)) ] ) for e in leafEdges]
+    dualGraphEdgesAsVertices = [intersect(maxCells[src(e)], maxCells[dst(e)]) for e in leafEdges]
     return dualGraphEdgesAsVertices
 end
 
@@ -77,6 +72,5 @@ function subd2LeavesAndCenter(subd, d, n)
     leafMaxMatroids = subdMatroidsLeaves(subd, d, n)
     leafEdgeMaxMatroids = [plueckerList2Matroid(Vector{Int64}(pm.@convert_to Vector r), d, n) for r in leafEdgesDualGraphAsCells(subd)]
     remainingMaxMatroids = subdMatroidsNonLeaves(subd, d, n)
-    
     return (leafMaxMatroids, leafEdgeMaxMatroids, remainingMaxMatroids) 
 end
