@@ -2,10 +2,6 @@ using Oscar
 using Combinatorics
 pm = Polymake
 
-using Oscar
-using Combinatorics
-pm = Polymake
-
 currentDir = pwd()
 
 include(joinpath(currentDir, "src/inputData38.jl"));
@@ -41,7 +37,7 @@ close(io1)
 
 for i in 1:length(G3)
     w = G3[i]
-    subd = SubdivisionOfPoints(vDelta38[:,2:9], -w)
+    subd = subdivision_of_points(vDelta38[:,2:9], -w)
     d = dimLimitLeafCVP(subd, QQ, 3, 8, R, x)
     push!(dims_G3, d)
     

@@ -38,7 +38,6 @@ function subdMatroidsNonLeaves(subd, d, n)
     dg = subdDualGraph(subd)
     Leaves = leavesGraph(dg)
     notLeaves = [v for v in 1:n_vertices(dg) if !(v in Leaves)]
-    notLeaves = [v for v in 1:Graphs.nv(graphOscar) if length(Graphs.all_neighbors(graphOscar, v)) > 1 ]
     return Mats[notLeaves]
 end
 
@@ -61,7 +60,7 @@ function leafEdgesDualGraphAsCells(subd)
     dg = subdDualGraph(subd)
     edges_dg = collect(edges(dg))
     lG = leavesGraph(dg)
-    leafEdges = [e for e in edges if (src(e) in lG || dst(e) in lG )]
+    leafEdges = [e for e in edges_dg if (src(e) in lG || dst(e) in lG )]
     maxCells = maximal_cells(subd)
     dualGraphEdgesAsVertices = [intersect(maxCells[src(e)], maxCells[dst(e)]) for e in leafEdges]
     return dualGraphEdgesAsVertices

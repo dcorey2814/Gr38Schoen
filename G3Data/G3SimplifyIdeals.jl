@@ -30,7 +30,7 @@ close(io2)
 
 
 for w in doesntHaveUpperTriangularG3
-    subd = SubdivisionOfPoints(vDelta38[:,2:9], -w)
+    subd = subdivision__of_points(vDelta38[:,2:9], -w)
     Ms = subdMatroidsNonLeaves(subd,3,8)
     
     optBs = optimalBasesForLimit(Ms)
@@ -42,7 +42,7 @@ for w in doesntHaveUpperTriangularG3
     
     
     Sinv = localizingSemiGroup(Ms, QQ, first(optBs), R, x)
-    SR = Localization(Sinv)[1]
+    SR = localization(Sinv)[1]
     
     if canReduceIdeal(gLim, R, x, Sinv, SR)
         push!(canFullySimplifyG3, w)
