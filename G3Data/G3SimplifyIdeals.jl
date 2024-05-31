@@ -18,7 +18,7 @@ doesntHaveUpperTriangularG3 = file2SetVectors(joinpath(currentDir, "G3Data/doesn
 canFullySimplifyG3 = []
 cannotFullySimplifyG3 = []
 
-R, x = makePolyRing(3,8, QQ)
+R, x = makePolyRing(3, 8, QQ)
 
 canFile = joinpath(currentDir,"G3Data/canFullySimplifyG3.dat")
 cannotFile = joinpath(currentDir,"G3Data/cannotFullySimplifyG3.dat")
@@ -30,7 +30,7 @@ close(io2)
 
 
 for w in doesntHaveUpperTriangularG3
-    subd = subdivision__of_points(vDelta38[:,2:9], -w)
+    subd = subdivision_of_points(vDelta38[:,2:9], -w)
     Ms = subdMatroidsNonLeaves(subd,3,8)
     
     optBs = optimalBasesForLimit(Ms)
