@@ -8,7 +8,7 @@ julia> Pkg.instantiate()
 
 **Convention** $TGr_{0}(3,8)$ is the support of a fan in $\wedge^{3}\mathbb{R}^{8} \cong \mathbb{R}^{\binom{[8]}{3}}$. We order the coordinates of $\mathbb{R}^{\binom{[8]}{3}} \cong \mathbb{R}$ lexicographically.  In the paper, we use the MIN convention, however, the data of $TGr_{0}(3,8)$ is given to us with respect to the MAX convention. Thus, when forming the associated subdivision of $\Delta(3,8)$, one must *negate* the vector. 
 
-## The seconday fan structure $\mathsf{TGr}_{0}(3,8)$: Raw data
+## The seconday fan structure $\operatorname{TGr}_{0}(3,8)$: Raw data
 
 The data of $\mathsf{TGr}_{0}(3,8)$ was shared with us by Benjamin Schr&#246;ter, which was computed in the paper *Parallel Computation of tropical varieties, their positive part, and tropical Grassmannians* <a href="https://arxiv.org/abs/2003.13752"> arXiv:2003.13752</a> by Dominik Bendle, Janko Boehm, Yue Ren, and Benjamin Schr&#246;ter. Their data is recorded at the following webpage.
 
