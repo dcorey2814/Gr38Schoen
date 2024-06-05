@@ -1,4 +1,0 @@
-using Oscar
-using Combinatorics
-pm = Polymake
-
