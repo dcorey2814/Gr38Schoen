@@ -2,14 +2,11 @@
 ###   Simplifying ideals  ####
 #####################
 
-
 function supportPolynomial(f, R, x)
     expVecs = [exponent_vector(f,i) for i in 1:length(f)]
-    
     if length(expVecs) == 0
         return zeros(Int64,  length(x))
     end
-    
     return sum(expVecs)
 end
 
@@ -24,21 +21,21 @@ function isUnitVector(v)
     return (length(Z) == n-1 && length(O) == 1)
 end
 
+#UUT = Unimodular Upper triangular
+# colPivot = Pair{Column, Pivot}
 
 function addColumnStillUniUpperTriangular(nr, nc, pivotsM, optionsM)
-
     outp = []    
-    notPivots = sort!([i for i in 1:nr if i ∉ pivotsM]); 
-
-    
+    notPivots = sort!([i for i in 1:nr if i ∉ pivotsM]); #print(notPivots)
     for cindex in 1:length(optionsM)
         c = optionsM[cindex]
         cNonPivots = c[notPivots]
+        #print(cNonPivots, "\n")
         if isUnitVector(cNonPivots)
             position1 = findall(x->x==1, cNonPivots)[1]
-            
+            #print("position1 = ", position1, "\n")
             newPivotsM = sort!(vcat(pivotsM, notPivots[position1]))
-            
+            #print("newPivots = ", newPivotsM, "\n")
             newOptionsM = [optionsM[i] for i in 1:length(optionsM) if i ≠ cindex]
             push!(outp, (newPivotsM, newOptionsM) )
         else
@@ -55,7 +52,6 @@ function removeZeroRows(M)
     return Matrix{Int64}([nonZeroRows[i][j] for i in 1:length(nonZeroRows), j in 1:nc])
 end
 
-
 function searchUniUpperTriangular(M)
     Mno0 = removeZeroRows(M) # to define
     nr, nc = size(Mno0); #print("nr=", nr, " nc=", nc, "\n")
@@ -68,13 +64,11 @@ function searchUniUpperTriangular(M)
         return any([a == Int64(1) for a in Mno0]) || all([a == Int64(0) for a in Mno0])
     end
     
-    
     initialPivots = Vector{Int64}([])
     colsMno0 = [Mno0[:,i] for i in 1:nc]
     
     Stepa = addColumnStillUniUpperTriangular(nr, nc, initialPivots, colsMno0)
     #print("Stepa = ",Stepa, "\n")
-    
     
     for i in 1:(nr-1)
         Stepb = []
@@ -83,12 +77,9 @@ function searchUniUpperTriangular(M)
             append!(Stepb, addData)
         end 
         Stepa = unique!(Stepb)
-
     end
-    
     return length(Stepa) > 0
 end
-
 
 function exponentVecs(Igens, R, x)
     rowsEV = [supportPolynomial(f, R, x) for f in Igens]
@@ -102,41 +93,19 @@ end
 
 
 function localizingSemiGroup(Ms, F, B, R, x)
-    d = rank(Ms[1])
-    n = length(matroid_groundset(Ms[1]))
-    
-    basesX = []
-
-    for M in Ms        
-        append!(basesX, projectedBases(M, F, B, R, x))
-    end 
-    
-    sTotal = MPolyPowersOfElement(basesX[1])
-    
-    if length(basesX) == 1
-        return sTotal
-    end
-    
-    for i in 2:length(basesX)
-        if basesX[i] ∉ sTotal
-            sTotal = product(sTotal, MPolyPowersOfElement(basesX[i]))
-        end
-    end
-    
-    return sTotal
-    
+    basesX = reduce(append!, map(M->projectedBases(M, F, B, R, x), Ms))
+    return reduce(product, map(powers_of_element, basesX)) 
 end
 
 
 function localizeLimitRing(Ms, F, B, R, x)
     sTotal = localizingSemiGroup(Ms, F, B, R, x)
-    return Localization(sTotal)[1]
+    return localization(sTotal)[1]    
 end
 
 function coefficientPoly(v, f, R)
     terms_v = [term(f,i) for i in 1:length(f) if v in vars(monomial(f,i))]
-    
-    
+    #print("terms_v = ", terms_v)
     if length(terms_v) == 0
         return R(0)
     else
@@ -161,35 +130,26 @@ end
 
 function varCanBeEliminated(v, f, R, S)
     cv = coefficientPoly(v, f, R)
-    
     if typeof(cv) == String 
         if cv == "can't isolate"
             return false
         end
-    end
-    
+    end 
     return cv in S
-    
 end
 
 
 function solve4v(v, f, R, S, SR)
-    
     if !varCanBeEliminated(v,f,R,S)
         return "can't solve"
     end
-    
     cv = coefficientPoly(v, f, R)
     terms_notv = [term(f,i) for i in 1:length(f) if v ∉ vars(monomial(f,i))]
-    
     if length(terms_notv) == 0
         return "can't solve"
     end
-    
     return R(-1) * sum(terms_notv) // cv
 end
-
-
 
 function idealEliminateVariable(Igens, R, x, S, SR, yi, yj, fy)
     nr_x , nc_x = size(x); #print("nr_x = ", nr_x, "\n")
@@ -236,14 +196,17 @@ function canReduceIdeal(Igens, R, x, S, SR)
     
     for f in Igens
         
+        #print("f = ", f, "\n")
         
         if stop
             continue
         end
         
         for v in vars(f)
+            #print("v = ", v, "\n")
             
             solve_v = solve4v(v, f, R, S, SR)
+            #print("solve_v = ", solve_v, "\n")
             
             if typeof(solve_v) == String
                 if solve_v == "can't solve"
@@ -254,11 +217,10 @@ function canReduceIdeal(Igens, R, x, S, SR)
                 v_r = v_index[1]; #print("v_r = ", v_r, "\n")
                 v_c = v_index[2]; #print("v_c = ", v_c, "\n")
                 elim_v = idealEliminateVariable(Igens, R, x, S, SR, v_r, v_c, solve_v)
+                #print("elim = ", elim_v[1], "\n")
                 stop = true
                 
                 return canReduceIdeal(elim_v[1], R, x, S, SR)
-                
-                
             end
         end      
     end
@@ -268,3 +230,4 @@ function canReduceIdeal(Igens, R, x, S, SR)
     end
     
 end
+

@@ -2,21 +2,21 @@
 ##   Creating the coordinate ring of thin Schubert cells     ###
 ##########################################
 
-function makePolyRing(d,n,F)
-    R,x = PolynomialRing(F, :"x"=>(1:d, 1:n-d))
+function makePolyRing(d::Int64, n::Int64, F::Ring)
+    R,x = polynomial_ring(F, :"x"=>(1:d, 1:n-d))
     W = ones(Int64, d*(n-d))
     R,x = grade(R,W)
     x = reshape(x, (d,n-d))
     return R,x
 end
 
-
-function makeCoordinateMatrix(d,n,B,R,x)
+function makeCoordinateMatrix(d::Int64, n::Int64, B::Vector{Int64}, R, x)
+   
     Id = identity_matrix(R,d)
-    S_id = MatrixSpace(R,d,n)
-    S = MatrixSpace(R,d,n-d)
+    S_id = matrix_space(R,d,n)
+    S = matrix_space(R,d,n-d)
     X = S(x)
-    
+
     X_id = S_id()
     
     idCount = 1
@@ -27,7 +27,7 @@ function makeCoordinateMatrix(d,n,B,R,x)
             X_id[:,i] = Id[:,idCount]
             idCount += 1
         end
-        if i ∉ B
+        if !(i in B)
             X_id[:,i] = X[:,varCount]
             varCount +=1
         end
@@ -62,7 +62,6 @@ function TSC(M, F, B, R, x)
     n = length(matroid_groundset(M))
     Bs = bases(M)
     NBs = nonbases(M)
-    #R,x = PolynomialRing(F, :"x"=>(1:d, 1:n-d))
 
     Mx = reducedCoordinateMatrix(M,d,n,B,R,x)
     I = ideal(unique!([det(Mx[:, nb]) for nb in NBs ]))

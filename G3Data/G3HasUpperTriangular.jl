@@ -23,14 +23,27 @@ R, x = makePolyRing(3,8, QQ)
 UTFile = joinpath(currentDir,"G3Data/hasUpperTriangularG3.dat")
 NUTFile = joinpath(currentDir,"G3Data/doesnthaveUpperTriangularG3.dat")
 
-#io1 = open(UTFile, "w") 
-#io2 = open(NUTFile, "w")
-#close(io1)
-#close(io2)
+io1 = open(UTFile, "w") 
+io2 = open(NUTFile, "w")
+close(io1)
+close(io2)
+
+hasUpperTriangularG3 = []
+doesntHaveUpperTriangularG3 = []
+
+R, x = makePolyRing(3,8, QQ)
+
+UTFile = joinpath(currentDir,"G3Data/hasUpperTriangularG3.dat")
+NUTFile = joinpath(currentDir,"G3Data/doesnthaveUpperTriangularG3.dat")
+
+io1 = open(UTFile, "w") 
+io2 = open(NUTFile, "w")
+close(io1)
+close(io2)
 
 
 for w in G3
-    subd = SubdivisionOfPoints(vDelta38[:,2:9], -w)
+    subd = subdivision_of_points(vDelta38[:,2:9], -w)
     Ms = subdMatroidsNonLeaves(subd,3,8)
     
     optBs = optimalBasesForLimit(Ms)
@@ -47,7 +60,6 @@ for w in G3
             write(io, vec2String(w), "\n")
         end;
 
-        
     else
         push!(doesntHaveUpperTriangularG3, w)
         open(NUTFile, "a") do io
