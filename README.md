@@ -1,5 +1,5 @@
 # Gr38Schoen
-Code used in the paper <a href="https://arxiv.org/abs/2206.14993"> The Grassmannian of 3-planes in C^8 is sch&#246;n</a> by Daniel Corey and Dante Luber. This code works with OSCAR version 1.0.2. Note: it may be essential to use this version of OSCAR. To ensure that you are using this version of Oscar, do the following. First, run `julia --project=.` in the terminal from the root of this project. Next, open `julia` and run the following:
+Code used in the paper <a href="https://doi.org/10.5802/alco.302"> The Grassmannian of 3-planes in C^8 is sch&#246;n</a> by Daniel Corey and Dante Luber. This code works with OSCAR version 1.0.2. Note: it may be essential to use this version of OSCAR. To ensure that you are using this version of Oscar, do the following. First, run `julia --project=.` in the terminal from the root of this project. Next, open `julia` and run the following:
 
 ```
 julia> using Pkg
@@ -10,7 +10,7 @@ julia> Pkg.instantiate()
 
 ## The seconday fan structure $\mathsf{TGr}_{0}(3,8)$: Raw data
 
-The data of $\mathsf{TGr}_{0}(3,8)$ was shared with us by Benjamin Schr&#246;ter, which was computed in the paper *Parallel Computation of tropical varieties, their positive part, and tropical Grassmannians* <a href="https://arxiv.org/abs/2003.13752"> arXiv:2003.13752</a> by Dominik Bendle, Janko Boehm, Yue Ren, and Benjamin Schr&#246;ter. Their data is recorded at the following webpage.
+The data of $\mathsf{TGr}_{0}(3,8)$ was shared with us by Benjamin Schr&#246;ter, which was computed in the paper *Parallel Computation of tropical varieties, their positive part, and tropical Grassmannians* (<a href="https://doi.org/10.1016/j.jsc.2023.102224">DOI</a>) by Dominik Bendle, Janko Boehm, Yue Ren, and Benjamin Schr&#246;ter. Their data is recorded at the following webpage.
 
 https://www.mathematik.uni-kl.de/~boehm/singulargpispace/tropical/TGR38.htm
 
